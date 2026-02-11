@@ -11,12 +11,16 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const pnlOverTime = getPnlOverTime();
-    const winRateByStrategy = getWinRateByStrategy();
-    const bestWorst = getBestWorstTrades(5);
-    const state = getAgentState();
-    const totalTrades = getTradeCount();
-    const closedTrades = getTradeCount({ status: "closed" }) + getTradeCount({ status: "resolved" });
+    const [pnlOverTime, winRateByStrategy, bestWorst, state, totalTrades, closedCount, resolvedCount] =
+      await Promise.all([
+        getPnlOverTime(),
+        getWinRateByStrategy(),
+        getBestWorstTrades(5),
+        getAgentState(),
+        getTradeCount(),
+        getTradeCount({ status: "closed" }),
+        getTradeCount({ status: "resolved" }),
+      ]);
 
     return NextResponse.json({
       pnlOverTime,
@@ -25,7 +29,7 @@ export async function GET() {
       worstTrades: bestWorst.worst,
       state,
       totalTrades,
-      closedTrades,
+      closedTrades: closedCount + resolvedCount,
     });
   } catch (error) {
     console.error("Analytics API error:", error);

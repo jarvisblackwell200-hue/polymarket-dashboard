@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const data = getDashboardSummary();
+    const data = await getDashboardSummary();
     return NextResponse.json(data);
   } catch (error) {
     console.error("Dashboard API error:", error);

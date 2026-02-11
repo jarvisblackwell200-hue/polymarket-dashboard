@@ -5,9 +5,9 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const positions = getOpenPositions();
+    const positions = await getOpenPositions();
     const marketIds = positions.map((p) => p.market_id);
-    const latestPrices = getLatestPrices(marketIds);
+    const latestPrices = await getLatestPrices(marketIds);
 
     const enriched = positions.map((p) => {
       const latest = latestPrices[p.market_id];

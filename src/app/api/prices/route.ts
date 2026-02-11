@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     }
 
     const limit = parseInt(searchParams.get("limit") || "200");
-    const prices = getPriceHistory(marketId, limit);
+    const prices = await getPriceHistory(marketId, limit);
 
     return NextResponse.json({ prices });
   } catch (error) {

@@ -11,9 +11,11 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "50");
     const offset = parseInt(searchParams.get("offset") || "0");
 
-    const trades = getTrades({ status, strategy, limit, offset });
-    const total = getTradeCount({ status, strategy });
-    const strategies = getStrategies();
+    const [trades, total, strategies] = await Promise.all([
+      getTrades({ status, strategy, limit, offset }),
+      getTradeCount({ status, strategy }),
+      getStrategies(),
+    ]);
 
     return NextResponse.json({ trades, total, strategies });
   } catch (error) {
