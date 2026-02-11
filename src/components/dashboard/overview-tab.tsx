@@ -33,9 +33,9 @@ export function OverviewTab({ data }: OverviewTabProps) {
   const apiCost = state?.total_api_cost ?? 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 overflow-hidden w-full max-w-full">
       {/* Stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 overflow-hidden">
         <StatCard
           title="Bankroll"
           value={formatUsd(bankroll)}
@@ -78,9 +78,13 @@ export function OverviewTab({ data }: OverviewTabProps) {
       </div>
 
       {/* Charts + Recent */}
-      <div className="grid lg:grid-cols-2 gap-4 min-w-0">
-        <ExposureChart data={exposureByStrategy} />
-        <RecentTrades trades={recentTrades} />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 min-w-0 overflow-hidden">
+        <div className="min-w-0 overflow-hidden">
+          <ExposureChart data={exposureByStrategy} />
+        </div>
+        <div className="min-w-0 overflow-hidden">
+          <RecentTrades trades={recentTrades} />
+        </div>
       </div>
     </div>
   );

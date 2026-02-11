@@ -44,14 +44,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden w-full max-w-[100vw]">
       <Nav
         activeTab={activeTab}
         onTabChange={setActiveTab}
         isAlive={data?.state?.is_alive === 1}
         lastUpdated={data?.state?.updated_at ?? null}
       />
-      <main className="max-w-7xl mx-auto px-4 py-6">
+      <main className="max-w-7xl mx-auto px-4 py-6 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -59,6 +59,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
+            className="overflow-hidden"
           >
             {activeTab === "overview" && data && <OverviewTab data={data} />}
             {activeTab === "positions" && <PositionsTab />}
