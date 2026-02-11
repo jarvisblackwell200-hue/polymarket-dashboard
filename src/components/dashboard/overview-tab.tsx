@@ -78,7 +78,7 @@ export function OverviewTab({ data }: OverviewTabProps) {
       </div>
 
       {/* Charts + Recent */}
-      <div className="grid lg:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-4 min-w-0">
         <ExposureChart data={exposureByStrategy} />
         <RecentTrades trades={recentTrades} />
       </div>

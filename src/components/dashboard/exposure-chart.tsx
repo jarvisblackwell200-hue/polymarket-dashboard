@@ -38,15 +38,15 @@ export function ExposureChart({ data }: ExposureChartProps) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
-      <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+      <Card className="bg-card/50 backdrop-blur-sm border-border/50 overflow-hidden">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
             Exposure by Strategy
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-6">
-            <div className="w-[160px] h-[160px]">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div className="w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] flex-shrink-0">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -75,7 +75,7 @@ export function ExposureChart({ data }: ExposureChartProps) {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex-1 space-y-2">
+            <div className="w-full sm:flex-1 space-y-2 min-w-0">
               {chartData.map((item, i) => (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">

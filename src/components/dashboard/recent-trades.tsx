@@ -18,7 +18,7 @@ export function RecentTrades({ trades }: RecentTradesProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
     >
-      <Card className="bg-card/50 backdrop-blur-sm border-border/50">
+      <Card className="bg-card/50 backdrop-blur-sm border-border/50 overflow-hidden">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
             Recent Activity
