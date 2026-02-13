@@ -48,7 +48,7 @@ export default function Home() {
       <Nav
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        isAlive={data?.state?.is_alive === 1}
+        isAlive={!!data?.state?.is_alive}
         lastUpdated={data?.state?.updated_at ?? null}
       />
       <main className="max-w-7xl mx-auto px-4 py-6 overflow-hidden">
